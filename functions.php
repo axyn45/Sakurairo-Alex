@@ -751,8 +751,8 @@ function custom_html()
 {
     $loginbg = iro_opt('login_background') ?: iro_opt('vision_resource_basepath','https://s.nmxc.ltd/sakurairo_vision/@2.5/').'series/login_background.webp'; ?>
         <script type="text/javascript">
-            document.body.insertAdjacentHTML("afterbegin", "<div class=\"loading\"><img src=\"<?=iro_opt('vision_resource_basepath','https://s.nmxc.ltd/sakurairo_vision/@2.5/')?>basic/login_loading.gif\" width=\"58\" height=\"10\"></div>");
-            document.head.insertAdjacentHTML("afterbegin", "<style>.show{opacity:1;}.hide{opacity:0;transition: opacity 400ms;}</style>");
+            // document.body.insertAdjacentHTML("afterbegin", "<div class=\"loading\"><img src=\"<?=iro_opt('vision_resource_basepath','https://s.nmxc.ltd/sakurairo_vision/@2.5/')?>basic/login_loading.gif\" width=\"58\" height=\"10\"></div>");
+            // document.head.insertAdjacentHTML("afterbegin", "<style>.show{opacity:1;}.hide{opacity:0;transition: opacity 400ms;}</style>");
             const loading = document.querySelector(".loading"),
              src = "<?= $loginbg ?>",
                 afterLoaded = () => {
