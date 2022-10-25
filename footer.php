@@ -57,8 +57,15 @@ $reception_background = iro_opt('reception_background');
 			$personal_avatar = iro_opt('personal_avatar');
 			$iro_logo = iro_opt('iro_logo');
 			$ava = iro_opt('personal_avatar') ? $personal_avatar: ($iro_logo ?: iro_opt('vision_resource_basepath','https://s.nmxc.ltd/sakurairo_vision/@2.5/').'series/avatar.webp'); ?>
-			<img src="<?php echo $ava ?>">
+			<img src="<?php echo get_avatar_url(wp_get_current_user()->ID); ?>">
 		</div>
+		<!-- <div class="m-username"> -->
+			<?php if(is_user_logged_in()){
+				echo "<div class=\"m-username\">"; echo wp_get_current_user()->display_name; echo "</div>";}
+				else{
+					echo "<div class=\"guest_state\">🛸Drifting...</div>";
+			} ?>
+		<!-- </div> -->
 		<div class="m-search">
 			<form class="m-search-form" method="get" action="<?php echo home_url(); ?>" role="search">
 				<input class="m-search-input" type="search" name="s" placeholder="<?php _e('Search...', 'sakurairo') /*搜索...*/?>" required>
