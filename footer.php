@@ -53,19 +53,26 @@ $reception_background = iro_opt('reception_background');
 	<!-- m-nav-center -->
 	<div id="mo-nav">
 		<div class="m-avatar">
-			<?php 
-			$personal_avatar = iro_opt('personal_avatar');
-			$iro_logo = iro_opt('iro_logo');
-			$ava = iro_opt('personal_avatar') ? $personal_avatar: ($iro_logo ?: iro_opt('vision_resource_basepath','https://s.nmxc.ltd/sakurairo_vision/@2.5/').'series/avatar.webp'); ?>
-			<img src="<?php echo get_avatar_url(wp_get_current_user()->ID); ?>">
+			<!-- m-login -->
+			<!-- <center> -->
+			<?php
+			global $user_ID, $user_identity, $user_email, $user_login;
+			wp_get_current_user();
+			if (!$user_ID) {
+			?>
+			<a href="/wp-admin">
+				<img class="faa-shake animated-hover" src="https://cdn.jsdelivr.net/gh/mirai-mamori/web-img/img/avatar.jpeg" width="90" height="90">
+			</a>
+			<div class="m-avatar author"><a href="/login?action=register" title="登陆后台">注 册</a> | <a href="/login" title="登陆后台">登 陆</a>
+			<?php }
+			else { ?> <a href="/wp-admin"><div class="img"><?php global $userdata; wp_get_current_user(); echo get_avatar($userdata->ID, 90); ?></a></div> <div class="author"> <?php echo $user_identity; ?>  |  <a href="<?php echo wp_logout_url(get_bloginfo('url')); ?>" target="_top"><?php _e('退出','sakurairo')/*退出登录*/?></a>
+			<?php } ?>
+			</div>
+			<!-- </center> -->
+			<!-- m-login -->
+
 		</div>
-		<!-- <div class="m-username"> -->
-			<?php if(is_user_logged_in()){
-				echo "<div class=\"m-username\">"; echo wp_get_current_user()->display_name; echo "</div>";}
-				else{
-					echo "<div class=\"guest_state\">🛸Drifting...</div>";
-			} ?>
-		<!-- </div> -->
+		
 		<div class="m-search">
 			<form class="m-search-form" method="get" action="<?php echo home_url(); ?>" role="search">
 				<input class="m-search-input" type="search" name="s" placeholder="<?php _e('Search...', 'sakurairo') /*搜索...*/?>" required>
